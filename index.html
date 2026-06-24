@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ParkPlace Alameda | Private Office Suites in the Park Street District</title>
+<meta name="description" content="Private office suites in the heart of Alameda's Park Street district. Home to wellness providers, beauty professionals, consultants, therapists, and small business owners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f3d33;        /* deep forest green - primary */
+    --green-deep:#16302a;
+    --brass:#b08443;        /* brass/gold accent */
+    --brass-light:#c9a063;
+    --cream:#f6f3ec;        /* warm off-white background */
+    --cream-card:#fbfaf6;
+    --ink:#23211c;          /* near-black text */
+    --muted:#6b6a62;        /* secondary text */
+    --line:#e3ddd0;         /* hairline dividers */
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--brass);font-weight:600;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;line-height:1}
+  .brand .logo-icon{height:42px;width:auto;display:block;mix-blend-mode:multiply}
+  .brand .mark{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--green);letter-spacing:-.02em}
+  .brand .sub{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .brand .brand-text{display:flex;flex-direction:column}
+  nav.links{display:flex;gap:34px;align-items:center}
+  nav.links a{
+    font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+    font-weight:500;position:relative;padding:6px 0;cursor:pointer;white-space:nowrap;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;
+    background:var(--brass);transition:width .25s ease;
+  }
+  nav.links a:hover::after,nav.links a.active::after{width:100%}
+  nav.links a.nav-cta{
+    background:var(--green);color:var(--cream);padding:10px 18px;border-radius:2px;
+    font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    transition:background .2s;white-space:nowrap;
+  }
+  nav.links a.nav-cta:hover{background:var(--green-deep);color:#fff}
+  .nav-cta::after{display:none}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+  .menu-btn span{width:24px;height:2px;background:var(--ink);display:block;transition:.3s}
+
+  /* ---------- PAGES ---------- */
+  .page{display:none}
+  .page.active{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:min(82vh,720px);overflow:hidden;background:var(--green-deep)}
+  .hero-slide{
+    position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;
+    background-size:cover;background-position:center;
+  }
+  .hero-slide.on{opacity:1}
+  .hero-slide::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(105deg,rgba(22,48,42,.82) 0%,rgba(22,48,42,.45) 48%,rgba(22,48,42,.15) 100%);}
+  .hero-content{
+    position:relative;z-index:2;height:100%;max-width:var(--maxw);margin:0 auto;
+    padding:0 28px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-content .eyebrow{color:var(--brass-light)}
+  .hero h1{
+    color:#fff;font-size:clamp(2.4rem,5.4vw,4.3rem);font-weight:500;
+    margin:18px 0 20px;max-width:13ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--brass-light)}
+  .hero p{color:rgba(255,255,255,.86);font-size:1.08rem;max-width:46ch;margin-bottom:34px}
+  .hero-actions{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+  .hero-link{color:rgba(255,255,255,.82);font-size:.92rem;letter-spacing:.02em;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px;transition:color .2s,border-color .2s}
+  .hero-link:hover{color:#fff;border-color:var(--brass-light)}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:2px;
+    font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    cursor:pointer;border:1.5px solid transparent;transition:all .22s;
+  }
+  .btn-primary{background:var(--brass);color:#241a09}
+  .btn-primary:hover{background:var(--brass-light);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{background:#fff;color:var(--green);border-color:#fff}
+  .btn .arr{transition:transform .22s}
+  .btn:hover .arr{transform:translateX(4px)}
+  .hero-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px}
+  .hero-dots button{width:30px;height:3px;border:0;background:rgba(255,255,255,.35);cursor:pointer;border-radius:2px;transition:.3s;padding:0}
+  .hero-dots button.on{background:var(--brass-light);width:46px}
+
+  /* ---------- SECTION SHELL ---------- */
+  .section{padding:88px 0}
+  .section-head{max-width:620px;margin-bottom:54px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head h2{font-size:clamp(1.9rem,3.5vw,2.8rem);margin:14px 0 16px}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  /* intro strip on home */
+  .intro{background:var(--cream-card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .intro .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+  .intro h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:14px 0 18px;color:var(--green)}
+  .intro p{color:var(--muted);margin-bottom:16px}
+  .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line)}
+  .feature{background:var(--cream-card);padding:26px 22px}
+  .feature .ic{width:34px;height:34px;color:var(--brass);margin-bottom:12px}
+  .feature h4{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:5px;color:var(--green)}
+  .feature p{font-size:.88rem;color:var(--muted);margin:0}
+
+  /* home suites preview */
+  .preview-suites{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+  .home-cta{text-align:center;background:var(--green);color:var(--cream);padding:72px 28px;border-radius:3px;margin-top:8px}
+  .home-cta h2{color:#fff;font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:14px}
+  .home-cta p{color:rgba(255,255,255,.8);max-width:48ch;margin:0 auto 28px}
+
+  /* spaces gallery */
+  .spaces{padding:88px 0 0}
+  .spaces .section-head{margin-bottom:40px}
+  .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;height:520px}
+  .gallery figure{position:relative;overflow:hidden;border-radius:3px;margin:0;background:var(--green-deep)}
+  .gallery figure img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .gallery figure:hover img{transform:scale(1.05)}
+  .gallery figure:first-child{grid-row:1/3}
+  .gallery figcaption{position:absolute;left:0;bottom:0;right:0;padding:18px 18px 16px;
+    background:linear-gradient(to top,rgba(22,48,42,.85),transparent);
+    color:#fff;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+
+  /* directory feature band */
+  .dir-feature{background:var(--green-deep);color:#fff;position:relative;overflow:hidden}
+  .dir-feature::before{content:"";position:absolute;left:-90px;bottom:-120px;width:360px;height:360px;border:1px solid rgba(176,132,67,.22);border-radius:50%}
+  .dir-feature::after{content:"";position:absolute;left:30px;bottom:-40px;width:200px;height:200px;border:1px solid rgba(176,132,67,.16);border-radius:50%}
+  .dir-feature .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+  .dir-feature .eyebrow{color:var(--brass-light)}
+  .dir-feature h2{color:#fff;font-size:clamp(2rem,3.8vw,3rem);margin:14px 0 18px}
+  .dir-feature .lead{color:rgba(255,255,255,.82);font-size:1.06rem;margin-bottom:18px;max-width:42ch}
+  .dir-feature .count{display:flex;align-items:baseline;gap:12px;margin-bottom:28px}
+  .dir-feature .count b{font-family:'Fraunces',serif;font-size:3rem;font-weight:600;color:var(--brass-light);line-height:1}
+  .dir-feature .count span{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .dir-feature .lease-note{margin-top:22px;font-size:.92rem;color:rgba(255,255,255,.72)}
+  .dir-feature .lease-note a{color:var(--brass-light);font-weight:600;border-bottom:1px solid rgba(201,160,99,.5);cursor:pointer}
+  .dir-feature .lease-note a:hover{color:#fff}
+  .cat-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cat-tile{
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:3px;
+    padding:16px 16px;cursor:pointer;transition:all .22s;
+  }
+  .cat-tile:hover{background:rgba(176,132,67,.14);border-color:var(--brass-light);transform:translateY(-3px)}
+  .cat-tile .ti{width:22px;height:22px;color:var(--brass-light);margin-bottom:9px}
+  .cat-tile h4{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:3px}
+  .cat-tile .n{font-size:.74rem;letter-spacing:.02em;color:rgba(255,255,255,.6)}
+
+  /* ---------- DIRECTORY ---------- */
+  .pagehead{background:var(--green-deep);color:#fff;padding:70px 0 64px;position:relative;overflow:hidden}
+  .pagehead::before{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;border:1px solid rgba(176,132,67,.3);border-radius:50%}
+  .pagehead::after{content:"";position:absolute;right:20px;top:40px;width:200px;height:200px;border:1px solid rgba(176,132,67,.22);border-radius:50%}
+  .pagehead .wrap{position:relative;z-index:2}
+  .pagehead .eyebrow{color:var(--brass-light)}
+  .pagehead h1{font-size:clamp(2.2rem,4.6vw,3.4rem);color:#fff;margin:14px 0 14px}
+  .pagehead p{color:rgba(255,255,255,.82);max-width:54ch}
+
+  .dir-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:34px}
+  .search-box{position:relative;flex:1;min-width:240px;max-width:380px}
+  .search-box input{
+    width:100%;padding:13px 16px 13px 44px;border:1px solid var(--line);background:var(--cream-card);
+    border-radius:2px;font-family:inherit;font-size:.95rem;color:var(--ink);
+  }
+  .search-box input:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:transparent}
+  .search-box svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    padding:9px 17px;border:1px solid var(--line);background:var(--cream-card);
+    font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;color:var(--muted);
+    border-radius:2px;cursor:pointer;transition:all .18s;
+  }
+  .chip:hover{border-color:var(--brass);color:var(--green)}
+  .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+
+  .dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .biz{
+    background:var(--cream-card);border:1px solid var(--line);border-radius:3px;padding:26px 24px;
+    transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;
+  }
+  .biz:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(31,61,51,.5);border-color:var(--brass-light)}
+  .biz .cat{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);font-weight:600}
+  .biz h3{font-size:1.22rem;font-weight:600;margin:9px 0 9px;color:var(--green)}
+  .biz p{font-size:.9rem;color:var(--muted);margin:0}
+  .biz .suite{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .biz .suite b{color:var(--ink);font-weight:600}
+  .no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+  .no-results h3{color:var(--green);margin-bottom:8px}
+
+  /* available suites band */
+  .avail{background:var(--cream-card);border:1px solid var(--line);border-radius:3px;padding:40px;margin-top:64px}
+  .avail-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .avail-head h2{font-size:1.7rem;color:var(--green)}
+  .avail-head .badge{background:var(--brass);color:#241a09;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:5px 11px;border-radius:2px}
+  .avail>p{color:var(--muted);margin-bottom:28px;max-width:58ch}
+  .suite-card{
+    background:var(--cream);border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .suite-card .ph{height:180px;background:var(--green-deep);position:relative;overflow:hidden}
+  .suite-card .ph img{width:100%;height:100%;object-fit:cover}
+  .suite-card .body{padding:24px}
+  .suite-card h3{font-size:1.3rem;color:var(--green);margin-bottom:6px;font-weight:600}
+  .suite-card .feat{list-style:none;margin:16px 0 22px;display:flex;flex-direction:column;gap:9px}
+  .suite-card .feat li{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .suite-card .feat li svg{width:16px;height:16px;color:var(--brass);flex-shrink:0}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .about-grid h2{font-size:clamp(1.9rem,3.5vw,2.7rem);color:var(--green);margin:14px 0 20px}
+  .about-grid p{color:var(--muted);margin-bottom:16px}
+  .about-photo{aspect-ratio:4/5;background:var(--green-deep);border-radius:3px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;border:1px solid var(--line);background:var(--line)}
+  .stat{background:var(--cream-card);padding:34px 26px;text-align:center}
+  .stat .n{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--brass);line-height:1}
+  .stat .l{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .values{margin-top:72px}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+  .value{padding:30px 26px;background:var(--cream-card);border:1px solid var(--line);border-radius:3px}
+  .value .num{font-family:'Fraunces',serif;font-size:1rem;color:var(--brass);font-weight:600;letter-spacing:.04em}
+  .value h4{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--green);font-weight:600;margin:10px 0 8px}
+  .value p{font-size:.92rem;color:var(--muted);margin:0}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .pitch{background:var(--green);color:var(--cream);padding:44px;border-radius:3px}
+  .pitch .eyebrow{color:var(--brass-light)}
+  .pitch h2{color:#fff;font-size:1.9rem;margin:14px 0 16px}
+  .pitch p{color:rgba(255,255,255,.82);margin-bottom:22px}
+  .pitch .info{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-direction:column;gap:16px}
+  .pitch .info .row{display:flex;gap:13px;align-items:flex-start}
+  .pitch .info svg{width:19px;height:19px;color:var(--brass-light);flex-shrink:0;margin-top:3px}
+  .pitch .info .row div{font-size:.92rem;color:rgba(255,255,255,.85)}
+  .pitch .info .row .lab{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-light);margin-bottom:2px}
+  .pitch .info .row a{color:rgba(255,255,255,.85)}
+  .pitch .info .row a:hover{color:#fff;text-decoration:underline}
+  .ph-line{color:rgba(255,255,255,.5);font-style:italic}
+
+  /* email contact card */
+  .email-card{background:var(--cream-card);border:1px solid var(--line);border-radius:3px;padding:44px 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .email-icon{width:64px;height:64px;border-radius:50%;background:rgba(176,132,67,.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .email-icon svg{width:30px;height:30px;color:var(--brass)}
+  .email-card h3{font-size:1.6rem;color:var(--green);margin-bottom:12px}
+  .email-intro{color:var(--muted);font-size:1rem;margin-bottom:28px;max-width:42ch}
+  .email-btn{font-size:.95rem;padding:17px 30px;color:#241a09!important}
+  .email-btn svg{flex-shrink:0}
+  .email-or{margin:22px 0 12px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);position:relative;width:100%}
+  .email-copy{display:flex;align-items:stretch;gap:0;border:1.5px solid var(--line);border-radius:3px;overflow:hidden;width:100%;max-width:420px}
+  .email-addr{flex:1;display:flex;align-items:center;justify-content:center;padding:13px 16px;font-size:1.02rem;font-weight:500;color:var(--ink);background:var(--cream);user-select:all;word-break:break-all}
+  .copy-btn{border:0;border-left:1.5px solid var(--line);background:var(--green);color:var(--cream);padding:0 22px;font-family:inherit;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background .2s;white-space:nowrap}
+  .copy-btn:hover{background:var(--green-deep)}
+  .copy-btn.copied{background:var(--brass);color:#241a09}
+  .email-help{margin-top:24px;font-size:.88rem;color:var(--muted);line-height:1.55;max-width:44ch}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--green-deep);color:rgba(255,255,255,.7);padding:56px 0 28px;margin-top:0}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-brand .mark{font-family:'Fraunces',serif;font-size:1.4rem;color:#fff;font-weight:600}
+  .foot-brand p{font-size:.9rem;margin-top:12px;max-width:34ch}
+  .foot-col h5{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-light);margin-bottom:16px;font-weight:600}
+  .foot-col a{display:block;font-size:.92rem;margin-bottom:10px;cursor:pointer;transition:color .2s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    nav.links{
+      position:fixed;top:0;right:0;height:100vh;width:min(78vw,320px);
+      background:var(--cream);flex-direction:column;align-items:flex-start;
+      padding:90px 32px;gap:8px;transform:translateX(100%);transition:transform .32s ease;
+      box-shadow:-20px 0 50px -30px rgba(0,0,0,.4);z-index:60;
+    }
+    nav.links.open{transform:none}
+    nav.links a{font-size:1rem;padding:12px 0;width:100%;border-bottom:1px solid var(--line)}
+    nav.links .nav-cta{margin-top:14px;border-bottom:0}
+    .menu-btn{display:flex;z-index:70}
+    .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-btn.open span:nth-child(2){opacity:0}
+    .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .intro .wrap,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .dir-feature .wrap{grid-template-columns:1fr;gap:36px}
+    .gallery{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,160px);height:auto}
+    .gallery figure:first-child{grid-row:1/2;grid-column:1/3}
+    .dir-grid{grid-template-columns:repeat(2,1fr)}
+    .preview-suites{grid-template-columns:1fr}
+    .values-grid,.stats{grid-template-columns:1fr}
+    .stats{gap:1px}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    .section{padding:60px 0}
+    .dir-grid{grid-template-columns:1fr}
+    .feature-grid{grid-template-columns:1fr}
+    .row2{grid-template-columns:1fr}
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .btn{justify-content:center}
+    .avail{padding:26px}
+    .pitch,.email-card{padding:28px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" data-page="home">
+      <img class="logo-icon" src="images/logo-icon.jpg" alt="ParkPlace Alameda logo">
+      <span class="brand-text">
+        <span class="mark">ParkPlace</span>
+        <span class="sub">Alameda · Park Street</span>
+      </span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="links" id="navLinks">
+      <a data-page="home" class="active">Home</a>
+      <a data-page="directory">Directory</a>
+      <a data-page="about">About</a>
+      <a data-page="contact">Contact</a>
+      <a data-page="directory" class="nav-cta">Explore Directory</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<main>
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="hero-slide on" style="background-image:url('images/building-front.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/street-corner.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hall-blue.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/conference.jpg')"></div>
+    <div class="hero-content">
+      <span class="eyebrow">Park Street District · Alameda</span>
+      <h1>Welcome to <em>ParkPlace</em>.</h1>
+      <p>A community of salon, wellness, and professional businesses under one roof in the heart of Alameda. Browse the directory to find who you're looking for.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" data-page="directory">Explore the Directory <span class="arr">→</span></a>
+        <a class="hero-link" data-page="contact">Interested in leasing a suite? →</a>
+      </div>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+  </div>
+
+  <!-- intro + amenities -->
+  <div class="intro section">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Why ParkPlace</span>
+        <h2>More than office space. A place to belong.</h2>
+        <p>You'll be in good company. The building is full of wellness providers, beauty professionals, consultants, therapists, and small business owners, all working on their own next chapter.</p>
+        <p>Every suite is move-in ready with the essentials taken care of, so you can put your energy into your clients and your work.</p>
+        <a class="btn btn-primary" data-page="about" style="margin-top:10px;color:#241a09">Learn About Us <span class="arr">→</span></a>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14 0M2 8.82a16 16 0 0 1 20 0M8.5 16.43a6 6 0 0 1 7 0M12 20h.01"/></svg>
+          <h4>WiFi & Utilities</h4>
+          <p>High-speed internet and utilities are included, so there's nothing extra to set up.</p>
+        </div>
+        <div class="feature">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h4>Secured Access</h4>
+          <p>Keep your suite and clients safe with secure, controlled building entry.</p>
+        </div>
+        <div class="feature">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-1l-2-4H6L4 10H3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          <h4>Large Parking Lot</h4>
+          <p>A spacious lot in back means easy parking for you and your clients.</p>
+        </div>
+        <div class="feature">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h4>Common Areas</h4>
+          <p>Shared spaces to welcome clients and connect with your neighbors.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- spaces gallery -->
+  <div class="spaces wrap">
+    <div class="section-head center">
+      <span class="eyebrow">The Space</span>
+      <h2>Bright, calm, and freshly finished</h2>
+      <p>Take a look inside. Wide hallways, natural light, and shared spaces designed to feel good to work in.</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="images/mural.jpg" alt="Bright hallway with skylight and natural light"><figcaption>Light-filled halls</figcaption></figure>
+      <figure><img src="images/breakroom.jpg" alt="Common area with seating"><figcaption>Common areas</figcaption></figure>
+      <figure><img src="images/conference.jpg" alt="Conference room with natural light"><figcaption>Meeting space</figcaption></figure>
+      <figure><img src="images/kitchenette.jpg" alt="Kitchenette with sink and seating"><figcaption>Kitchenette</figcaption></figure>
+      <figure><img src="images/breakroom-slat.jpg" alt="Break room with wood-slat feature wall"><figcaption>Break room</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- directory feature -->
+  <div class="dir-feature section">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Our Community</span>
+        <h2>Meet the businesses at ParkPlace</h2>
+        <p class="lead">From hair and nails to skincare, massage, and counseling, ParkPlace is home to a community of independent professionals.</p>
+        <div class="count">
+          <b id="tenantCount">30</b>
+          <span>Businesses<br>under one roof</span>
+        </div>
+        <a class="btn btn-primary" data-page="directory" style="color:#241a09">Browse the Directory <span class="arr">→</span></a>
+      </div>
+      <div class="cat-tiles" id="catTiles"></div>
+    </div>
+  </div>
+
+  <!-- closing leasing note -->
+  <div class="wrap" style="padding-bottom:88px">
+    <div class="home-cta">
+      <span class="eyebrow" style="color:var(--brass-light)">Now Leasing</span>
+      <h2>Want to join the ParkPlace community?</h2>
+      <p>We have a few suites available for salon, office, and retail professionals. If you're looking for space in the Park Street district, we'd love to hear from you.</p>
+      <a class="btn btn-primary" data-page="contact" style="color:#241a09">Leasing & Contact <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECTORY ============ -->
+<section class="page" id="directory">
+  <div class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">Directory</span>
+      <h1>Meet the professionals of ParkPlace</h1>
+      <p>A community of salon, skincare, wellness, and professional businesses, all under one roof in the Park Street district. Search or filter to find who you're looking for.</p>
+    </div>
+  </div>
+
+  <div class="section wrap">
+    <div class="dir-controls">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="dirSearch" placeholder="Search by name or service…" aria-label="Search directory">
+      </div>
+      <div class="filters" id="dirFilters"></div>
+    </div>
+    <div class="dir-grid" id="dirGrid"></div>
+
+    <!-- available suites -->
+    <div class="avail">
+      <div class="avail-head">
+        <h2>Available Suites</h2>
+        <span class="badge">2 Open</span>
+      </div>
+      <p>Two private suites are ready now. Reach out through the contact page to schedule a walkthrough.</p>
+      <div class="preview-suites" id="dirSuites"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="page" id="about">
+  <div class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">About Us</span>
+      <h1>Rooted in the Park Street community</h1>
+      <p>ParkPlace Alameda is a welcoming home for independent professionals, built around the people who work here.</p>
+    </div>
+  </div>
+
+  <div class="section wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">Our Story</span>
+        <h2>In the heart of Alameda's Park Street district.</h2>
+        <p>ParkPlace Alameda sits surrounded by local restaurants, cafés, shops, and small businesses. Our building offers private office suites for people who are building, growing, or expanding their work.</p>
+        <p>We're home to a mix of professionals: wellness providers, beauty professionals, consultants, therapists, and other small business owners. We know how much it matters to have a space that feels professional, comfortable, and easy for clients to visit.</p>
+        <p>That's why our suites include the things that matter: WiFi, utilities, common areas, secured access, and a large parking lot in back. ParkPlace is more than office space. It's a place to work, meet clients, and be part of the community.</p>
+      </div>
+      <div class="about-photo"><img src="images/hall-long.jpg" alt="Bright interior hallway at ParkPlace Alameda"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">33</div><div class="l">Private Suites</div></div>
+      <div class="stat"><div class="n">28</div><div class="l">Businesses</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Convenient Entrances</div></div>
+    </div>
+
+    <div class="values">
+      <div class="section-head"><span class="eyebrow">What We Offer</span><h2 style="color:var(--green);font-size:2rem;margin-top:10px">Built for the way you work</h2></div>
+      <div class="values-grid">
+        <div class="value"><div class="num">01</div><h4>Professional & comfortable</h4><p>A space that feels right the moment a client walks in. Calm, clean, and welcoming.</p></div>
+        <div class="value"><div class="num">02</div><h4>Everything included</h4><p>WiFi, utilities, secured access, common areas, and parking are all taken care of for you.</p></div>
+        <div class="value"><div class="num">03</div><h4>A real community</h4><p>Join a friendly mix of independent professionals who support one another's growth.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="page" id="contact">
+  <div class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1>Let's talk about your space</h1>
+      <p>Interested in leasing a suite, or have a question? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <div class="section wrap">
+    <div class="contact-grid">
+      <div class="pitch">
+        <span class="eyebrow">Now Leasing · 2 Suites</span>
+        <h2>Ready for your next chapter?</h2>
+        <p>Whether you're just getting started or ready to expand, we'd love to help you find the right space for your business at ParkPlace.</p>
+        <p>Send us an email and we'll get back to you to answer questions or schedule a visit.</p>
+        <div class="info">
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><div class="lab">Location</div>1500 Park Street (2411 Santa Clara Avenue)<br>Alameda, CA 94501</div>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <div><div class="lab">Follow Along</div><a href="https://www.instagram.com/parkplace_alameda/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="https://www.facebook.com/profile.php?id=61588818000198" target="_blank" rel="noopener">Facebook</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </div>
+        <h3>Email us</h3>
+        <p class="email-intro">The best way to reach us is by email. Click the button below to start a message, or copy our address and write to us from anywhere.</p>
+
+        <a class="btn btn-primary email-btn" href="mailto:parkplacealameda@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          Click here to email us
+        </a>
+
+        <div class="email-or">or copy our address</div>
+
+        <div class="email-copy">
+          <span class="email-addr" id="emailAddr">parkplacealameda@gmail.com</span>
+          <button class="copy-btn" id="copyBtn" type="button">Copy</button>
+        </div>
+
+        <p class="email-help">Clicking the button opens your email app with our address already filled in. If nothing happens, just copy the address above and paste it into Gmail, Outlook, or whatever email you use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="mark">ParkPlace Alameda</span>
+        <p>Salon suites, offices, and retail space for independent professionals in the heart of the Park Street district.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a data-page="home">Home</a>
+        <a data-page="directory">Directory</a>
+        <a data-page="about">About</a>
+        <a data-page="contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <a href="mailto:parkplacealameda@gmail.com">parkplacealameda@gmail.com</a>
+        <a href="https://www.instagram.com/parkplace_alameda/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61588818000198" target="_blank" rel="noopener">Facebook</a>
+        <a data-page="contact">Lease a Suite</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> ParkPlace Alameda. All rights reserved.</span>
+      <span>Alameda, CA · Park Street</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- DIRECTORY DATA: edit tenants here (name, category, description, suite) ---------- */
+const TENANTS = [
+  {name:"Fleur Chambre Studio Salon", cat:"Hair", desc:"A boutique studio salon for cuts, color, and styling.", suite:"1"},
+  {name:"Bare. By Alex", cat:"Skin", desc:"Waxing and skincare in a private, comfortable suite.", suite:"2"},
+  {name:"Silky Touch Skin", cat:"Skin", desc:"Facials and skin treatments for a healthy glow.", suite:"3–4"},
+  {name:"Jennifer Castello, LCSW & Cate Lewis, LCSW", cat:"Therapy", desc:"Licensed clinical social workers offering counseling and support.", suite:"5"},
+  {name:"Skin Reset Lab", cat:"Skin", desc:"Results-driven facials and corrective skincare.", suite:"6–7"},
+  {name:"Second Born Skin", cat:"Skin", desc:"Personalized skincare and esthetic services.", suite:"8"},
+  {name:"Skin Essential Studio", cat:"Skin", desc:"Essential facials and skin-health treatments.", suite:"9"},
+  {name:"Jerry Beverly Realtor Inc.", cat:"Professional", desc:"Local real estate expertise for buyers and sellers.", suite:"10"},
+  {name:"Greenlight Fund", cat:"Professional", desc:"Office suite for a mission-driven organization.", suite:"12"},
+  {name:"Intrigue By Remix", cat:"Hair", desc:"Creative cuts, color, and styling.", suite:"13"},
+  {name:"Rituals By Kat", cat:"Skin", desc:"Aesthetic treatments and skincare rituals.", suite:"14"},
+  {name:"Luxe Beauty Medspa", cat:"Skin", desc:"Med-spa treatments and advanced skincare.", suite:"15"},
+  {name:"ME Nail Spa", cat:"Nails", desc:"Manicures, pedicures, and nail care.", suite:"16"},
+  {name:"Sage Leitson Psychotherapy", cat:"Therapy", desc:"Psychotherapy in a calm, confidential setting.", suite:"17"},
+  {name:"Hair By Jodi", cat:"Hair", desc:"Personalized hair styling and color.", suite:"18"},
+  {name:"Hair By Three", cat:"Hair", desc:"A collaborative hair studio for every style.", suite:"19"},
+  {name:"Hair By Long", cat:"Hair", desc:"Expert cuts, color, and styling.", suite:"20"},
+  {name:"ClawsByWoo", cat:"Nails", desc:"Custom nail art and detailed nail care.", suite:"21"},
+  {name:"Demi's Beauty Care", cat:"Skin", desc:"Beauty and skincare services by appointment.", suite:"22"},
+  {name:"Beauty In Metamorphosis", cat:"Skin", desc:"Transformative beauty and skincare treatments.", suite:"23"},
+  {name:"Aquarian Therapeutic", cat:"Wellness", desc:"Therapeutic bodywork and wellness services.", suite:"24"},
+  {name:"Max Antor, LMFT", cat:"Therapy", desc:"Licensed marriage and family therapist.", suite:"25"},
+  {name:"Tehwalai Wellness LLC", cat:"Wellness", desc:"Holistic wellness services and care.", suite:"26"},
+  {name:"Sonia Lakin, LCSW", cat:"Therapy", desc:"Clinical counseling for individuals and families.", suite:"28"},
+  {name:"StellzNailz", cat:"Nails", desc:"Nail artistry and custom designs.", suite:"29"},
+  {name:"Alameda Massage", cat:"Wellness", desc:"Relaxing and therapeutic massage in Alameda.", suite:"30"},
+  {name:"Skinn By Francesca", cat:"Skin", desc:"Skincare treatments for a healthy, radiant complexion.", suite:"32"},
+  {name:"The Vault", cat:"Retail", desc:"Resale boutique for pre-loved designer clothing and finds.", suite:"33"},
+];
+
+/* category display order */
+const CAT_ORDER = ["Hair","Nails","Skin","Wellness","Therapy","Professional","Retail"];
+
+const SUITES = [
+  {name:"Suite 11", img:"images/suite-door.jpg", feats:["Private, move-in-ready suite","Natural light and fresh finishes","Great for salon, skin, or office use"]},
+  {name:"Suite 27", img:"images/conference.jpg", feats:["Private, move-in-ready suite","Quiet interior location","Ideal for wellness or professional services"]},
+];
+
+/* ---------- RENDER DIRECTORY ---------- */
+const CAT_LABELS = {
+  "Hair":"Hair", "Nails":"Nails", "Skin":"Skin & Beauty",
+  "Wellness":"Wellness & Massage", "Therapy":"Therapy & Counseling",
+  "Professional":"Professional", "Retail":"Retail"
+};
+const presentCats = CAT_ORDER.filter(c => TENANTS.some(t=>t.cat===c));
+const cats = ["All", ...presentCats];
+let activeCat = "All", query = "";
+const grid = document.getElementById('dirGrid');
+const filterWrap = document.getElementById('dirFilters');
+
+filterWrap.innerHTML = cats.map((c,i)=>`<button class="chip ${i===0?'on':''}" data-cat="${c}">${c==="All"?"All":CAT_LABELS[c]}</button>`).join('');
+filterWrap.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+  filterWrap.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+  ch.classList.add('on'); activeCat = ch.dataset.cat; renderDir();
+}));
+document.getElementById('dirSearch').addEventListener('input',e=>{query=e.target.value.toLowerCase();renderDir();});
+
+function suiteSortKey(s){ const m=String(s).match(/\d+/); return m?parseInt(m[0],10):0; }
+
+function renderDir(){
+  const list = TENANTS.filter(t=>{
+    const okCat = activeCat==="All" || t.cat===activeCat;
+    const okQ = !query || (t.name+t.desc+CAT_LABELS[t.cat]).toLowerCase().includes(query);
+    return okCat && okQ;
+  }).sort((a,b)=>suiteSortKey(a.suite)-suiteSortKey(b.suite));
+  if(!list.length){
+    grid.innerHTML = `<div class="no-results"><h3>No matches</h3><p>Try a different search or category.</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(t=>`
+    <article class="biz">
+      <span class="cat">${CAT_LABELS[t.cat]}</span>
+      <h3>${t.name}</h3>
+      <p>${t.desc}</p>
+      <div class="suite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Suite <b>${t.suite}</b></div>
+    </article>`).join('');
+}
+renderDir();
+
+/* ---------- RENDER SUITES ---------- */
+function suiteCard(s){
+  return `<div class="suite-card">
+    <div class="ph"><img src="${s.img}" alt="${s.name} at ParkPlace Alameda"></div>
+    <div class="body">
+      <h3>${s.name}</h3>
+      <ul class="feat">${s.feats.map(f=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>${f}</li>`).join('')}</ul>
+      <a class="btn btn-primary" data-page="contact" style="color:#241a09;width:100%;justify-content:center">Inquire <span class="arr">→</span></a>
+    </div>
+  </div>`;
+}
+document.getElementById('dirSuites').innerHTML = SUITES.map(suiteCard).join('');
+
+/* ---------- HERO ROTATOR ---------- */
+const slides = document.querySelectorAll('.hero-slide');
+const dotsWrap = document.getElementById('heroDots');
+dotsWrap.innerHTML = Array.from(slides).map((_,i)=>`<button class="${i===0?'on':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
+let cur = 0;
+const dots = dotsWrap.querySelectorAll('button');
+function go(i){
+  slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
+  cur = i; slides[cur].classList.add('on'); dots[cur].classList.add('on');
+}
+dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);reset();}));
+let timer = setInterval(()=>go((cur+1)%slides.length), 5000);
+function reset(){clearInterval(timer);timer=setInterval(()=>go((cur+1)%slides.length),5000);}
+
+/* ---------- ROUTING ---------- */
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('nav.links a');
+function show(page){
+  pages.forEach(p=>p.classList.toggle('active',p.id===page));
+  navLinks.forEach(a=>a.classList.toggle('active', a.dataset.page===page && !a.classList.contains('nav-cta')));
+  window.scrollTo({top:0,behavior:'instant'});
+  closeMenu();
+}
+document.addEventListener('click',e=>{
+  const t = e.target.closest('[data-page]');
+  if(t){ e.preventDefault(); show(t.dataset.page); }
+});
+
+/* ---------- MOBILE MENU ---------- */
+const menuBtn = document.getElementById('menuBtn');
+const navMenu = document.getElementById('navLinks');
+function closeMenu(){menuBtn.classList.remove('open');navMenu.classList.remove('open');}
+menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('open');navMenu.classList.toggle('open');});
+
+/* ---------- COPY EMAIL ---------- */
+const copyBtn = document.getElementById('copyBtn');
+if(copyBtn){
+  copyBtn.addEventListener('click', async ()=>{
+    const email = 'parkplacealameda@gmail.com';
+    try{
+      await navigator.clipboard.writeText(email);
+    }catch(e){
+      // fallback for older browsers
+      const tmp = document.createElement('textarea');
+      tmp.value = email; document.body.appendChild(tmp); tmp.select();
+      try{ document.execCommand('copy'); }catch(_){}
+      document.body.removeChild(tmp);
+    }
+    const orig = copyBtn.textContent;
+    copyBtn.textContent = 'Copied!';
+    copyBtn.classList.add('copied');
+    setTimeout(()=>{ copyBtn.textContent = orig; copyBtn.classList.remove('copied'); }, 2000);
+  });
+}
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- HOME -> DIRECTORY category tiles ---------- */
+document.getElementById('tenantCount').textContent = TENANTS.length;
+
+const CAT_ICONS = {
+  "Hair":'<path d="M21 5a4 4 0 0 0-7-2.6L3 13m9-3 9 9M6.5 16.5 3 20m6.5-3.5L13 20"/><circle cx="6" cy="6" r="3"/>',
+  "Nails":'<path d="M12 2c-2 0-3 1.5-3 4v9a3 3 0 0 0 6 0V6c0-2.5-1-4-3-4z"/><path d="M9 9h6"/>',
+  "Skin":'<circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>',
+  "Wellness":'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  "Therapy":'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  "Professional":'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
+  "Retail":'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>'
+};
+const CAT_BLURB = {
+  "Hair":"Cuts, color & styling","Nails":"Manicures & nail art",
+  "Skin":"Facials, skin & beauty","Wellness":"Massage & bodywork",
+  "Therapy":"Counseling & support","Professional":"Offices & services",
+  "Retail":"Shops & boutiques"
+};
+const catTilesWrap = document.getElementById('catTiles');
+catTilesWrap.innerHTML = presentCats.map(c=>{
+  const n = TENANTS.filter(t=>t.cat===c).length;
+  return `<div class="cat-tile" data-cat="${c}">
+    <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${CAT_ICONS[c]||''}</svg>
+    <h4>${CAT_LABELS[c]}</h4>
+    <div class="n">${n} ${n===1?'business':'businesses'} · ${CAT_BLURB[c]||''}</div>
+  </div>`;
+}).join('');
+catTilesWrap.querySelectorAll('.cat-tile').forEach(tile=>{
+  tile.addEventListener('click',()=>{
+    show('directory');
+    const chip = filterWrap.querySelector(`.chip[data-cat="${tile.dataset.cat}"]`);
+    if(chip) chip.click();
+  });
+});
+</script>
+</body>
+</html>
