@@ -204,7 +204,9 @@
   .chip:hover{border-color:var(--brass);color:var(--green)}
   .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
 
-  .dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .dir-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+  .dir-grid .biz{width:calc((100% - 40px)/3)}
+  .dir-grid .no-results{width:100%}
   .biz{
     background:var(--cream-card);border:1px solid var(--line);border-radius:3px;padding:26px 24px;
     transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;
@@ -313,7 +315,7 @@
     .dir-feature .wrap{grid-template-columns:1fr;gap:36px}
     .gallery{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,160px);height:auto}
     .gallery figure:first-child{grid-row:1/2;grid-column:1/3}
-    .dir-grid{grid-template-columns:repeat(2,1fr)}
+    .dir-grid .biz{width:calc((100% - 20px)/2)}
     .preview-suites{grid-template-columns:1fr}
     .values-grid,.stats{grid-template-columns:1fr}
     .stats{gap:1px}
@@ -321,7 +323,7 @@
   @media(max-width:560px){
     .wrap{padding:0 20px}
     .section{padding-top:60px;padding-bottom:60px}
-    .dir-grid{grid-template-columns:1fr}
+    .dir-grid .biz{width:100%}
     .feature-grid{grid-template-columns:1fr}
     .row2{grid-template-columns:1fr}
     .hero-actions{flex-direction:column;align-items:stretch}
@@ -519,7 +521,7 @@
 
     <div class="stats">
       <div class="stat"><div class="n">33</div><div class="l">Private Suites</div></div>
-      <div class="stat"><div class="n">28</div><div class="l">Businesses</div></div>
+      <div class="stat"><div class="n">29</div><div class="l">Businesses</div></div>
       <div class="stat"><div class="n">2</div><div class="l">Convenient Entrances</div></div>
     </div>
 
@@ -628,11 +630,11 @@ const TENANTS = [
   {name:"Jennifer Castello, LCSW & Cate Lewis, LCSW", cat:"Therapy", desc:"Licensed clinical social workers offering counseling and support.", suite:"5"},
   {name:"Skin Reset Lab", cat:"Skin", desc:"Results-driven facials and corrective skincare.", suite:"6–7"},
   {name:"Second Born Skin", cat:"Skin", desc:"Personalized skincare and esthetic services.", suite:"8"},
-  {name:"Skin Essential Studio", cat:"Skin", desc:"Essential facials and skin-health treatments.", suite:"9"},
+  {name:"Cocoswaxx", cat:"Skin", desc:"Essential facials and skin-health treatments.", suite:"9"},
   {name:"Jerry Beverly Realtor Inc.", cat:"Professional", desc:"Local real estate expertise for buyers and sellers.", suite:"10"},
   {name:"Greenlight Fund", cat:"Professional", desc:"Office suite for a mission-driven organization.", suite:"12"},
   {name:"Intrigue By Remix", cat:"Hair", desc:"Creative cuts, color, and styling.", suite:"13"},
-  {name:"Rituals By Kat", cat:"Skin", desc:"Aesthetic treatments and skincare rituals.", suite:"14"},
+  {name:"Presley's Aesthetics", cat:"Skin", desc:"Aesthetic treatments and skincare rituals.", suite:"14"},
   {name:"Luxe Beauty Medspa", cat:"Skin", desc:"Med-spa treatments and advanced skincare.", suite:"15"},
   {name:"ME Nail Spa", cat:"Nails", desc:"Manicures, pedicures, and nail care.", suite:"16"},
   {name:"Sage Leitson Psychotherapy", cat:"Therapy", desc:"Psychotherapy in a calm, confidential setting.", suite:"17"},
@@ -650,6 +652,7 @@ const TENANTS = [
   {name:"Alameda Massage", cat:"Wellness", desc:"Relaxing and therapeutic massage in Alameda.", suite:"30"},
   {name:"Skinn By Francesca", cat:"Skin", desc:"Skincare treatments for a healthy, radiant complexion.", suite:"32"},
   {name:"The Vault", cat:"Retail", desc:"Resale boutique for pre-loved designer clothing and finds.", suite:"33"},
+  {name:"D20 Games", cat:"Retail", desc:"Ground-floor board game shop for games that don't go beep: D&D, Magic: The Gathering, Pokémon, and more.", suite:"34", loc:"Downstairs · 1502 Park Street", order:-1},
 ];
 
 /* category display order */
@@ -686,7 +689,11 @@ function renderDir(){
     const okCat = activeCat==="All" || t.cat===activeCat;
     const okQ = !query || (t.name+t.desc+CAT_LABELS[t.cat]).toLowerCase().includes(query);
     return okCat && okQ;
-  }).sort((a,b)=>suiteSortKey(a.suite)-suiteSortKey(b.suite));
+  }).sort((a,b)=>{
+    const oa = a.order!==undefined ? a.order : suiteSortKey(a.suite);
+    const ob = b.order!==undefined ? b.order : suiteSortKey(b.suite);
+    return oa-ob;
+  });
   if(!list.length){
     grid.innerHTML = `<div class="no-results"><h3>No matches</h3><p>Try a different search or category.</p></div>`;
     return;
@@ -696,7 +703,7 @@ function renderDir(){
       <span class="cat">${CAT_LABELS[t.cat]}</span>
       <h3>${t.name}</h3>
       <p>${t.desc}</p>
-      <div class="suite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Suite <b>${t.suite}</b></div>
+      <div class="suite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>${t.loc ? t.loc : 'Suite <b>'+t.suite+'</b>'}</div>
     </article>`).join('');
 }
 renderDir();
