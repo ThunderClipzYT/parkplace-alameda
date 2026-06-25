@@ -328,6 +328,15 @@
     .btn{justify-content:center}
     .avail{padding:26px}
     .pitch,.email-card{padding:28px}
+    /* mobile spacing fixes */
+    .pagehead{padding:54px 0 48px}
+    .pagehead + .section{padding-top:48px}
+    .contact-grid{gap:28px;display:flex;flex-direction:column}
+    .contact-grid .email-card{order:1}
+    .contact-grid .pitch{order:2}
+    .pitch{border-radius:6px}
+    .email-card{border-radius:6px}
+    .stats{margin-top:48px}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
