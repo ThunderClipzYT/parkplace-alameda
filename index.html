@@ -23,9 +23,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --green:#1f3d33;        /* deep forest green - primary */
-    --green-deep:#16302a;
-    --green-black:#0f221d;  /* deepest, for layered shadow */
+    --green:#1a4039;        /* deep pine green with a cool teal undertone - primary */
+    --green-deep:#123330;
+    --green-black:#0c231f;  /* deepest, for layered shadow */
     --brass:#b08443;        /* brass/gold accent */
     --brass-light:#c9a063;
     --brass-pale:#e8d5b0;   /* engraved-plate highlight */
@@ -36,9 +36,9 @@
     --line:#e3ddd0;         /* hairline dividers */
     --maxw:1200px;
     /* elevation: layered, warm-tinted, never neutral grey */
-    --lift-1:0 1px 2px rgba(31,61,51,.06), 0 2px 8px -4px rgba(31,61,51,.10);
-    --lift-2:0 2px 4px rgba(31,61,51,.05), 0 12px 28px -12px rgba(31,61,51,.22);
-    --lift-3:0 4px 8px rgba(31,61,51,.06), 0 24px 48px -20px rgba(31,61,51,.32);
+    --lift-1:0 1px 2px rgba(26,64,57,.06), 0 2px 8px -4px rgba(26,64,57,.10);
+    --lift-2:0 2px 4px rgba(26,64,57,.05), 0 12px 28px -12px rgba(26,64,57,.22);
+    --lift-3:0 4px 8px rgba(26,64,57,.06), 0 24px 48px -20px rgba(26,64,57,.32);
     /* the building's own arch, used as a repeating radius */
     --arch:100px 100px 3px 3px;
     --ease:cubic-bezier(.22,.61,.36,1);
@@ -307,7 +307,7 @@
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.65),      /* struck top edge */
       inset 0 -1px 0 rgba(90,64,26,.35),        /* recessed bottom */
-      0 1px 2px rgba(31,61,51,.18);
+      0 1px 2px rgba(26,64,57,.18);
     text-shadow:0 1px 0 rgba(255,255,255,.35);
   }
   /* the light sweep, held off until the card is seen */
@@ -517,7 +517,7 @@
       <p class="rise rise-3">A community of salon, wellness, and professional businesses under one roof in the heart of Alameda. Browse the directory to find who you're looking for.</p>
       <div class="hero-actions rise rise-4">
         <a class="btn btn-primary" data-page="directory">Explore the Directory <span class="arr">→</span></a>
-        <a class="hero-link" data-page="contact">Interested in leasing a suite? →</a>
+        <a class="hero-link" data-page="contact">Want a suite here? Join the waitlist →</a>
       </div>
     </div>
     <div class="hero-dots" id="heroDots"></div>
@@ -594,10 +594,10 @@
   <!-- closing leasing note -->
   <div class="wrap" style="padding-bottom:88px">
     <div class="home-cta">
-      <span class="eyebrow" style="color:var(--brass-light)">Now Leasing</span>
+      <span class="eyebrow" style="color:var(--brass-light)">Waitlist Open</span>
       <h2>Want to join the ParkPlace community?</h2>
-      <p>We have a suite available for salon, office, or retail professionals. If you're looking for space in the Park Street district, we'd love to hear from you.</p>
-      <a class="btn btn-primary" data-page="contact" style="color:#241a09">Leasing & Contact <span class="arr">→</span></a>
+      <p>Our suites are fully leased right now, but spaces do open up. Join the waitlist and we'll reach out first when a suite becomes available.</p>
+      <a class="btn btn-primary" data-page="contact" style="color:#241a09">Join the Waitlist <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -622,14 +622,15 @@
     </div>
     <div class="dir-grid" id="dirGrid"></div>
 
-    <!-- available suites -->
+    <!-- available suites / waitlist -->
     <div class="avail">
       <div class="avail-head">
-        <h2>Available Suites</h2>
-        <span class="badge" id="availBadge">1 Open</span>
+        <h2 id="availHead">Join the Waitlist</h2>
+        <span class="badge" id="availBadge">Waitlist Open</span>
       </div>
-      <p id="availText">One private suite is ready now. Reach out through the contact page to schedule a walkthrough.</p>
+      <p id="availText">Every suite is currently leased, but suites do open up. Email us to join the waitlist and we'll reach out first when one becomes available.</p>
       <div class="preview-suites" id="dirSuites"></div>
+      <a class="btn btn-primary" id="availCta" data-page="contact" style="color:#241a09;margin-top:4px">Join the Waitlist <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -658,7 +659,7 @@
 
     <div class="stats">
       <div class="stat"><div class="n">33</div><div class="l">Private Suites</div></div>
-      <div class="stat"><div class="n">30</div><div class="l">Businesses</div></div>
+      <div class="stat"><div class="n">31</div><div class="l">Businesses</div></div>
       <div class="stat"><div class="n">2</div><div class="l">Convenient Entrances</div></div>
     </div>
 
@@ -679,17 +680,17 @@
     <div class="wrap">
       <span class="eyebrow">Contact</span>
       <h1>Let's talk about your space</h1>
-      <p>Interested in leasing a suite, or have a question? We'd love to hear from you.</p>
+      <p>Want to join our waitlist, or have a question? We'd love to hear from you.</p>
     </div>
   </div>
 
   <div class="section wrap">
     <div class="contact-grid">
       <div class="pitch">
-        <span class="eyebrow">Now Leasing · 1 Suite</span>
+        <span class="eyebrow">Waitlist Open</span>
         <h2>Ready for your next chapter?</h2>
-        <p>Whether you're just getting started or ready to expand, we'd love to help you find the right space for your business at ParkPlace.</p>
-        <p>Send us an email and we'll get back to you to answer questions or schedule a visit.</p>
+        <p>Our suites are fully leased right now, but spaces open up over time. If you'd love a home for your business at ParkPlace, join our waitlist.</p>
+        <p>Send us an email and we'll add you to the list and reach out first when a suite becomes available.</p>
         <div class="info">
           <div class="row">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -799,7 +800,7 @@ const TENANTS = [
   {name:"Second Born Skin", cat:"Skin", desc:"Personalized skincare and esthetic services.", suite:"8"},
   {name:"Cocoswaxx", cat:"Skin", desc:"Essential facials and skin-health treatments.", suite:"9"},
   {name:"Jerry Beverly Realtor Inc.", cat:"Professional", desc:"Local real estate expertise for buyers and sellers.", suite:"10"},
-  {name:"Manifest510", cat:"Nails", desc:"Nail technician offering manicures, nail art, and custom sets.", suite:"11", isNew:true},
+  {name:"Manifest510", cat:"Nails", desc:"Nail technician offering manicures, nail art, and custom sets.", suite:"11"},
   {name:"Greenlight Fund", cat:"Professional", desc:"Office suite for a mission-driven organization.", suite:"12"},
   {name:"Intrigue By Remix", cat:"Hair", desc:"Creative cuts, color, and styling.", suite:"13"},
   {name:"Presley's Aesthetics", cat:"Skin", desc:"Aesthetic treatments and skincare rituals.", suite:"14"},
@@ -815,20 +816,19 @@ const TENANTS = [
   {name:"Aquarian Therapeutic", cat:"Wellness", desc:"Therapeutic bodywork and wellness services.", suite:"24"},
   {name:"Max Antor, LMFT", cat:"Therapy", desc:"Licensed marriage and family therapist.", suite:"25"},
   {name:"Tehwalai Wellness LLC", cat:"Wellness", desc:"Holistic wellness services and care.", suite:"26"},
+  {name:"Let Me Wax That", cat:"Skin", desc:"Professional waxing and smooth-skin services.", suite:"27"},
   {name:"Sonia Lakin, LCSW", cat:"Therapy", desc:"Clinical counseling for individuals and families.", suite:"28"},
   {name:"StellzNailz", cat:"Nails", desc:"Nail artistry and custom designs.", suite:"29"},
   {name:"Alameda Massage", cat:"Wellness", desc:"Relaxing and therapeutic massage in Alameda.", suite:"30"},
   {name:"Skinn By Francesca", cat:"Skin", desc:"Skincare treatments for a healthy, radiant complexion.", suite:"32"},
-  {name:"The Vault", cat:"Retail", desc:"Resale boutique for pre-loved designer clothing and finds.", suite:"33"},
+  {name:"Sarah Wagner, LMFT PC", cat:"Therapy", desc:"Licensed marriage and family therapist providing individual and family counseling.", suite:"33"},
   {name:"D20 Games", cat:"Retail", desc:"Ground-floor board game shop for games that don't go beep: D&D, Magic: The Gathering, Pokémon, and more.", suite:"34", loc:"Downstairs · 1502 Park Street", order:-1},
 ];
 
 /* category display order */
 const CAT_ORDER = ["Hair","Nails","Skin","Wellness","Therapy","Professional","Retail"];
 
-const SUITES = [
-  {name:"Suite 27", img:"images/conference.jpg", feats:["Private, move-in-ready suite","Quiet interior location","Ideal for wellness or professional services"]},
-];
+const SUITES = [];
 
 /* ---------- RENDER DIRECTORY ---------- */
 const CAT_LABELS = {
@@ -892,17 +892,24 @@ document.getElementById('dirSuites').innerHTML = SUITES.map(suiteCard).join('');
 /* keep the availability badge + wording in sync with SUITES */
 (function(){
   const n = SUITES.length;
+  const head = document.getElementById('availHead');
   const badge = document.getElementById('availBadge');
   const text = document.getElementById('availText');
-  const words = {0:'No',1:'One',2:'Two',3:'Three',4:'Four',5:'Five'};
-  if(badge) badge.textContent = n + ' Open';
-  if(text){
-    if(n===0){
-      text.textContent = 'All suites are currently leased. Reach out through the contact page to ask about future openings.';
-    } else {
-      const w = words[n] || n;
-      text.textContent = `${w} private suite${n===1?' is':'s are'} ready now. Reach out through the contact page to schedule a walkthrough.`;
-    }
+  const cta = document.getElementById('availCta');
+  const words = {1:'One',2:'Two',3:'Three',4:'Four',5:'Five'};
+  if(n===0){
+    // waitlist mode
+    if(head) head.textContent = 'Join the Waitlist';
+    if(badge) badge.textContent = 'Waitlist Open';
+    if(text) text.textContent = "Every suite is currently leased, but suites do open up. Email us to join the waitlist and we'll reach out first when one becomes available.";
+    if(cta) cta.style.display = '';
+  } else {
+    // suites available
+    const w = words[n] || n;
+    if(head) head.textContent = 'Available Suites';
+    if(badge) badge.textContent = n + ' Open';
+    if(text) text.textContent = `${w} private suite${n===1?' is':'s are'} ready now. Reach out through the contact page to schedule a walkthrough.`;
+    if(cta) cta.style.display = 'none';
   }
 })();
 
